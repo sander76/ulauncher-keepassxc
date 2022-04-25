@@ -31,7 +31,7 @@ class KeepassxcLockedDbError(Exception):
 
 
 class KeepassxcCliError(Exception):
-    """ Contains error message returned by keepassxc-cli """
+    """Contains error message returned by keepassxc-cli"""
 
     def __init__(self, message):
         super(KeepassxcCliError, self).__init__()
@@ -39,7 +39,7 @@ class KeepassxcCliError(Exception):
 
 
 class KeepassxcDatabase:
-    """ Wrapper around keepassxc-cli """
+    """Wrapper around keepassxc-cli"""
 
     def __init__(self):
         self.cli = "keepassxc-cli"
@@ -124,7 +124,7 @@ class KeepassxcDatabase:
         if self.is_passphrase_needed():
             raise KeepassxcLockedDbError()
 
-        (err, out) = self.run_cli("locate", "-q", self.path, query)
+        (err, out) = self.run_cli("search", "-q", self.path, query)
         if err:
             if "No results for that" in err:
                 return []
